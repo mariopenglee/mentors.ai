@@ -27,19 +27,27 @@ import lock from './assets/icons/lock.png';
 import verticalLine from './assets/icons/verticalLine.png';
 import horizontalLine from './assets/icons/horizontalLine.png';
 
+// components
+import MainLandingScreen from './pages/Home';
 
 function App(): JSX.Element {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isLogin, setIsLogin] = useState(false);
 
   const handleLogin = () => {
-    if (username === 'admin' && password === 'password') {
+    if (username === 'Admin' && password === 'admin') {
       alert('Login successful!');
+      setIsLogin(true);
       // Redirect to another page or perform further actions
     } else {
       alert('Invalid username or password. Please try again.');
     }
   };
+
+  if (isLogin) {
+    return <MainLandingScreen />;
+  }
 
   return (
     <ImageBackground source={background} style={styles.backgroundImage}>
