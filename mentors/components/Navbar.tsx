@@ -1,34 +1,34 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-const Navbar: React.FC = () => {
-  const [selectedTab, setSelectedTab] = useState('section1'); // Set the initial selected tab
+type Props = {
+  setActiveSection: (section: string) => void;
+  activeSection: string;
+};
 
-  const handleTabPress = (tabName: string) => {
-    setSelectedTab(tabName);
-  };
+const Navbar: React.FC<Props> = ({ setActiveSection, activeSection }) => {
+    console.log('Rendering Navbar with active section:', activeSection);
 
   return (
     <View style={styles.navbar}>
       <TouchableOpacity
-        style={[styles.tabButton, selectedTab === 'section1' && styles.activeTab]}
-        onPress={() => handleTabPress('section1')}
+        style={[styles.tabButton, activeSection === 'section1' && styles.activeTab]}
+        onPress={() => setActiveSection('section1')}
       >
-        <Text style={[styles.tabButtonText, selectedTab === 'section1' && styles.activeTabText]}>Program</Text>
+        <Text style={[styles.tabButtonText, activeSection === 'section1' && styles.activeTabText]}>Section 1</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={[styles.tabButton, selectedTab === 'section2' && styles.activeTab]}
-        onPress={() => handleTabPress('section2')}
+        style={[styles.tabButton, activeSection === 'section2' && styles.activeTab]}
+        onPress={() => setActiveSection('section2')}
       >
-        <Text style={[styles.tabButtonText, selectedTab === 'section2' && styles.activeTabText]}>Discover</Text>
+        <Text style={[styles.tabButtonText, activeSection === 'section2' && styles.activeTabText]}>Section 2</Text>
       </TouchableOpacity>
-
-        <TouchableOpacity
-        style={[styles.tabButton, selectedTab === 'section3' && styles.activeTab]}
-        onPress={() => handleTabPress('section3')}
-        >
-        <Text style={[styles.tabButtonText, selectedTab === 'section3' && styles.activeTabText]}>Profile</Text>
-        </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.tabButton, activeSection === 'section3' && styles.activeTab]}
+        onPress={() => setActiveSection('section3')}
+      >
+        <Text style={[styles.tabButtonText, activeSection === 'section3' && styles.activeTabText]}>Section 3</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -44,13 +44,11 @@ const styles = StyleSheet.create({
   tabButton: {
     paddingHorizontal: 15,
     paddingVertical: 10,
-    width: '30%',
   },
   tabButtonText: {
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
-    textAlign: 'center',
   },
   activeTab: {
     borderBottomWidth: 2,

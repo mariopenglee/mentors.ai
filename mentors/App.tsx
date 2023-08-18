@@ -27,7 +27,7 @@ import verticalLine from './assets/icons/verticalLine.png';
 import horizontalLine from './assets/icons/horizontalLine.png';
 
 // components
-import MainLandingScreen from './pages/Home';
+import Home from './pages/Home';
 
 
 
@@ -47,7 +47,7 @@ function App(): JSX.Element {
   };
 
   if (isLogin) {
-    return <MainLandingScreen />;
+    return <Home />;
   }
 
   return (
