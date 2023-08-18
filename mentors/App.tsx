@@ -4,7 +4,6 @@
  *
  * @format
  */
-
 import React, { Children, useState } from 'react';
 import {
   SafeAreaView,
@@ -29,6 +28,8 @@ import horizontalLine from './assets/icons/horizontalLine.png';
 
 // components
 import MainLandingScreen from './pages/Home';
+
+
 
 function App(): JSX.Element {
   const [username, setUsername] = useState('');

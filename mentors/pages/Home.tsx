@@ -14,17 +14,20 @@ import background from '../assets/images/background.png';
 // import components
 import Navbar from '../components/Navbar';
 
-export default
 
-function MainLandingScreen() {
-    return (
-      <ImageBackground source={background} style={styles.backgroundImage}>
-      <SafeAreaView style={styles.container}>
+const MainLandingScreen: React.FC = () => {
+  return (
+    <ImageBackground source={background} style={styles.backgroundImage}>
+    <View style={styles.container}>
+      <Text>This is the Main Landing Screen</Text>
+      {/* Other content */}
+      <View style={styles.bottom}>
         <Navbar />
-      </SafeAreaView>
-      </ImageBackground>
-    );
-  }
+      </View>
+    </View>
+    </ImageBackground>
+  );
+};
 
 const styles = StyleSheet.create({
   backgroundImage: {
@@ -38,6 +41,13 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       },
+  bottom: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 12,
+  },
+
   
     });
     
+export default MainLandingScreen;
