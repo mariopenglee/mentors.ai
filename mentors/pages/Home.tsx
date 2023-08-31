@@ -2,6 +2,9 @@ import React, { useState, useRef } from 'react';
 import { ImageBackground, SafeAreaView, StyleSheet, View, ScrollView, Dimensions, Text } from 'react-native';
 import Navbar from '../components/Navbar';
 import background from '../assets/images/background.png';
+import Discovery from './Discovery';
+import Program from './Program';
+import Profile from './Profile';
 
 const screen_width = Dimensions.get('window').width;
 
@@ -17,6 +20,12 @@ const Home: React.FC = () => {
     }
   };
 
+  const onScroll = (event: any) => {
+    const index = Math.round(event.nativeEvent.contentOffset.x / screen_width);
+    const section = index === 0 ? 'section1' : index === 1 ? 'section2' : 'section3';
+    setActiveSection(section);
+  }
+
   return (
     <ImageBackground source={background} style={styles.backgroundImage}>
       <SafeAreaView style={styles.container}>
@@ -25,20 +34,24 @@ const Home: React.FC = () => {
           horizontal={true}
           pagingEnabled={true}
           contentContainerStyle={{ width: screen_width * 3 }} // Total width of all sections
+          showsHorizontalScrollIndicator={false}
+          scrollEventThrottle={200}
+          decelerationRate="fast"
+          onScroll={onScroll}
         >
           {/* First Section */}
           <View style={[styles.section, { backgroundColor: 'red', width: screen_width }]}>
-            <Text style={styles.sectionText}>Section 1</Text>
+            <Profile />
           </View>
 
           {/* Second Section */}
-          <View style={[styles.section, { backgroundColor: 'blue', width: screen_width }]}>
-            <Text style={styles.sectionText}>Section 2</Text>
+          <View style={[styles.section, { backgroundColor: '#222', width: screen_width }]}>
+            <Discovery />
           </View>
 
           {/* Third Section */}
           <View style={[styles.section, { backgroundColor: 'green', width: screen_width }]}>
-            <Text style={styles.sectionText}>Section 3</Text>
+            <Program />
           </View>
         </ScrollView>
 
